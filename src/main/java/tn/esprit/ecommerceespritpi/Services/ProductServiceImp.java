@@ -1,10 +1,18 @@
 package tn.esprit.ecommerceespritpi.Services;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import tn.esprit.ecommerceespritpi.Entities.Product;
+import tn.esprit.ecommerceespritpi.Repository.IProductRepository;
 
 import java.util.List;
 
+@Service
 public class ProductServiceImp implements IProductService{
+
+    @Autowired
+    IProductRepository productRepo;
+
     @Override
     public Product AddProduct(Product product) {
         return null;
