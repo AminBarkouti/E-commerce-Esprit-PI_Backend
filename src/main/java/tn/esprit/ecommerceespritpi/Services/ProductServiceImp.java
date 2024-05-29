@@ -24,12 +24,12 @@ public class ProductServiceImp implements IProductService{
     }
 
     @Override
-    public void UpdateProduct(Product product) {
-
+    public Product UpdateProduct(Product product) {
+        return product;
     }
 
     @Override
-    public Product GetProductById(int id) {
+    public Product GetProductById(Long id) {
         return null;
     }
 
