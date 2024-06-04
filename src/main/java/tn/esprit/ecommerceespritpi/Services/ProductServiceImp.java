@@ -15,26 +15,32 @@ public class ProductServiceImp implements IProductService{
 
     @Override
     public Product AddProduct(Product product) {
-        return null;
+        return productRepo.save(product);
     }
 
     @Override
-    public void RemoveProduct(Product product) {
-
+    public String RemoveProduct(Long id) {
+        productRepo.deleteById(id);
+        return "Product removed";
     }
 
     @Override
     public Product UpdateProduct(Product product) {
-        return product;
+        Product P = productRepo.findById(product.getIdProduct()).get();
+        P.setName(product.getName());
+        P.setPrice(product.getPrice());
+        P.setDescription(product.getDescription());
+        productRepo.save(P);
+        return P;
     }
 
     @Override
     public Product GetProductById(Long id) {
-        return null;
+        return productRepo.findById(id).get();
     }
 
     @Override
     public List<Product> GetAllProducts() {
-        return List.of();
+        return (List<Product>) productRepo.findAll();
     }
 }

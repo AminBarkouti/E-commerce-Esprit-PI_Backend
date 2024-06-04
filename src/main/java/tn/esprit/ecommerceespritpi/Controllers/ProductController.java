@@ -21,6 +21,11 @@ public class ProductController {
         return productService.AddProduct(a);
     }
 
+    @DeleteMapping("/delete/{id}")
+    public String deleteProduct(@PathVariable("id") Long id){
+        return productService.RemoveProduct(id);
+    }
+
     @GetMapping("/getById/{id}")
     public Product getById(@PathVariable("id") Long id) {
         return productService.GetProductById(id);
