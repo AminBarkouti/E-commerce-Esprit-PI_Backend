@@ -18,7 +18,7 @@ public class ProductCategoryImp implements IProductCategoryService {
 
     @Override
     public List<ProductCategory> getAllProductCategories() {
-        return List.of();
+        return (List<ProductCategory>) productCategoryRepo.findAll();
     }
 
     @Override
