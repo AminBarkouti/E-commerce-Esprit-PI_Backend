@@ -22,7 +22,7 @@ public class Product {
     private double price;
     private int quantityAvailable;
 
-    @OneToMany
-    @JsonIgnore
-    private List<ProductCategory> productCategories;
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private ProductCategory productCategory;
 }
