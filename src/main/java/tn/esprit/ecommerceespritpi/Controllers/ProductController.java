@@ -1,5 +1,6 @@
 package tn.esprit.ecommerceespritpi.Controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.ecommerceespritpi.Entities.Product;
 import tn.esprit.ecommerceespritpi.Services.IProductService;
@@ -9,6 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/Product")
 public class ProductController {
+    @Autowired
     IProductService productService;
 
     @GetMapping("/listProduct")

@@ -1,7 +1,7 @@
 package tn.esprit.ecommerceespritpi.Controllers;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import tn.esprit.ecommerceespritpi.Entities.Product;
 import tn.esprit.ecommerceespritpi.Entities.ProductCategory;
 import tn.esprit.ecommerceespritpi.Services.IProductCategoryService;
 
@@ -10,6 +10,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/ProductCategory")
 public class ProductCategoryController {
+    @Autowired
     IProductCategoryService productCategoryService;
 
     @GetMapping("/listProductCategory")
