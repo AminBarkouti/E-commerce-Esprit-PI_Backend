@@ -10,4 +10,6 @@ public interface ICommandeService {
     Commande UpdateCommande(Commande commande);
     Commande GetCommandeById(Long id);
     List<Commande> GetAllCommandes();
+
+    Commande setAdresseLivraison(Long commandeId, Long adresseId);
 }

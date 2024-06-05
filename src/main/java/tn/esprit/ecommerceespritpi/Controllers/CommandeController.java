@@ -1,6 +1,7 @@
 package tn.esprit.ecommerceespritpi.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.ecommerceespritpi.Entities.Commande;
@@ -51,5 +52,14 @@ public class CommandeController {
     public ResponseEntity<List<Commande>> getAllCommandes() {
         List<Commande> commandes = commandeService.GetAllCommandes();
         return ResponseEntity.ok(commandes);
+    }
+    @PutMapping("/{commandeId}/setAdresse/{adresseId}")
+    public ResponseEntity<Commande> setAdresseLivraison(@PathVariable Long commandeId, @PathVariable Long adresseId) {
+        Commande updatedCommande = commandeService.setAdresseLivraison(commandeId, adresseId);
+        if (updatedCommande != null) {
+            return new ResponseEntity<>(updatedCommande, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
     }
 }
