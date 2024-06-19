@@ -19,4 +19,7 @@ public class Conge {
     private Date dateDebut;
     private Date dateFin;
     private StatutConge statutConge;
+//    @ManyToOne
+//    @JoinColumn(name = "employe_id")
+//    private Employe employe;
 }

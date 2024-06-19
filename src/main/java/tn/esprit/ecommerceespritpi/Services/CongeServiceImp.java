@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import tn.esprit.ecommerceespritpi.Entities.Conge;
 import tn.esprit.ecommerceespritpi.Repository.ICongeRepository;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -43,5 +44,11 @@ public class CongeServiceImp implements ICongeService {
     @Override
     public List<Conge> getAllConges() {
         return (List<Conge>) congeRepo.findAll();
+    }
+
+    @Override
+    public boolean isHolidayAvailable(Date startDate, Date endDate) {
+        List<Conge> overlappingConges = congeRepo.findOverlappingConges(startDate, endDate);
+        return overlappingConges.isEmpty();
     }
 }
