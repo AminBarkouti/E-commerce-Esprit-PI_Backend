@@ -1,6 +1,5 @@
 package tn.esprit.ecommerceespritpi.Entities;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,14 +14,21 @@ import java.util.List;
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idProduct;
-
-    private String name;
+    private Long id;
+    private String title;
+    @Column(length = 1000)
     private String description;
+    private String category;
+    private String type;
+    private Size sizes;
+    private String images;
+    private String stock;
     private double price;
-    private int quantityAvailable;
+    private double prevprice;
+    private Integer qte;
+    private double discount;
+    private double totalprice;
 
-    @ManyToOne
-    @JoinColumn(name = "category_id")
-    private ProductCategory productCategory;
+    @Embedded
+    private Rating rating;
 }

@@ -26,8 +26,8 @@ public class ProductServiceImp implements IProductService{
 
     @Override
     public Product UpdateProduct(Product product) {
-        Product P = productRepo.findById(product.getIdProduct()).get();
-        P.setName(product.getName());
+        Product P = productRepo.findById(product.getId()).get();
+        P.setTitle(product.getTitle());
         P.setPrice(product.getPrice());
         P.setDescription(product.getDescription());
         productRepo.save(P);

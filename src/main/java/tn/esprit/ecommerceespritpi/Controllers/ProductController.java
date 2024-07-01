@@ -8,12 +8,12 @@ import tn.esprit.ecommerceespritpi.Services.IProductService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Product")
+@RequestMapping("/products")
 public class ProductController {
     @Autowired
     IProductService productService;
 
-    @GetMapping("/listProduct")
+    @GetMapping("")
     public List<Product> getProducts() {
         return productService.GetAllProducts();
     }
