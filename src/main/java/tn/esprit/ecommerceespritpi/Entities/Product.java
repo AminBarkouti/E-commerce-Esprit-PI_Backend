@@ -20,15 +20,16 @@ public class Product {
     private String description;
     private String category;
     private String type;
-    private Size sizes;
-    private String images;
+    @ElementCollection
+    private List<String> sizes;
+    @ElementCollection
+    private List<String> images;
     private String stock;
     private double price;
     private double prevprice;
     private Integer qte;
     private double discount;
     private double totalprice;
-
     @Embedded
     private Rating rating;
 }

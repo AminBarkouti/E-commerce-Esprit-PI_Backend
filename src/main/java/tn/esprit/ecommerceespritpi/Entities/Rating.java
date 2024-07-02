@@ -1,6 +1,7 @@
 package tn.esprit.ecommerceespritpi.Entities;
 
-import jakarta.persistence.*;
+
+import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

@@ -9,6 +9,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/products")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ProductController {
     @Autowired
     IProductService productService;
@@ -16,6 +17,14 @@ public class ProductController {
     @GetMapping("")
     public List<Product> getProducts() {
         return productService.GetAllProducts();
+    }
+
+    @PostMapping("/addProducts")
+    public List<Product> addProducts(@RequestBody List<Product> products) {
+        for (Product product : products) {
+            productService.AddProduct(product);
+        }
+        return products;
     }
 
     @PostMapping("/addProduct")
@@ -28,7 +37,7 @@ public class ProductController {
         return productService.RemoveProduct(id);
     }
 
-    @GetMapping("/getById/{id}")
+    @GetMapping("{id}")
     public Product getById(@PathVariable("id") Long id) {
         return productService.GetProductById(id);
     }
