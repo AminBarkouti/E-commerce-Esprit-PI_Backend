@@ -8,14 +8,29 @@ import tn.esprit.ecommerceespritpi.Services.IProductService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/Product")
+@RequestMapping("/products")
+@CrossOrigin(origins = "http://localhost:4200")
 public class ProductController {
     @Autowired
     IProductService productService;
 
-    @GetMapping("/listProduct")
-    public List<Product> getProducts() {
+    @GetMapping("")
+    public List<Product> getProducts(@RequestParam(value = "type", required = false) String type,
+                                     @RequestParam(value = "category", required = false) String category) {
+        if (type != null) {
+            return productService.getProductsByType(type);
+        } else if (category != null) {
+            return productService.getProductsByCategory(category);
+        }
         return productService.GetAllProducts();
+    }
+
+    @PostMapping("/addProducts")
+    public List<Product> addProducts(@RequestBody List<Product> products) {
+        for (Product product : products) {
+            productService.AddProduct(product);
+        }
+        return products;
     }
 
     @PostMapping("/addProduct")
@@ -24,11 +39,11 @@ public class ProductController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteProduct(@PathVariable("id") Long id){
+    public String deleteProduct(@PathVariable("id") Long id) {
         return productService.RemoveProduct(id);
     }
 
-    @GetMapping("/getById/{id}")
+    @GetMapping("{id}")
     public Product getById(@PathVariable("id") Long id) {
         return productService.GetProductById(id);
     }
@@ -37,5 +52,4 @@ public class ProductController {
     public Product updateProduct(@RequestBody Product product) {
         return productService.UpdateProduct(product);
     }
-
 }
