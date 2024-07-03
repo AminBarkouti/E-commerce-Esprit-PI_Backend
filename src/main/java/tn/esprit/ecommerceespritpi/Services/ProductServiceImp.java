@@ -8,7 +8,7 @@ import tn.esprit.ecommerceespritpi.Repository.IProductRepository;
 import java.util.List;
 
 @Service
-public class ProductServiceImp implements IProductService{
+public class ProductServiceImp implements IProductService {
 
     @Autowired
     IProductRepository productRepo;
@@ -42,5 +42,15 @@ public class ProductServiceImp implements IProductService{
     @Override
     public List<Product> GetAllProducts() {
         return (List<Product>) productRepo.findAll();
+    }
+
+    @Override
+    public List<Product> getProductsByType(String type) {
+        return productRepo.findByType(type);
+    }
+
+    @Override
+    public List<Product> getProductsByCategory(String category) {
+        return productRepo.findByCategory(category);
     }
 }

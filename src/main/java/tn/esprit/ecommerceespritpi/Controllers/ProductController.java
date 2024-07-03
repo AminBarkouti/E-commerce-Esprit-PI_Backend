@@ -15,7 +15,13 @@ public class ProductController {
     IProductService productService;
 
     @GetMapping("")
-    public List<Product> getProducts() {
+    public List<Product> getProducts(@RequestParam(value = "type", required = false) String type,
+                                     @RequestParam(value = "category", required = false) String category) {
+        if (type != null) {
+            return productService.getProductsByType(type);
+        } else if (category != null) {
+            return productService.getProductsByCategory(category);
+        }
         return productService.GetAllProducts();
     }
 
@@ -33,7 +39,7 @@ public class ProductController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteProduct(@PathVariable("id") Long id){
+    public String deleteProduct(@PathVariable("id") Long id) {
         return productService.RemoveProduct(id);
     }
 
@@ -46,5 +52,4 @@ public class ProductController {
     public Product updateProduct(@RequestBody Product product) {
         return productService.UpdateProduct(product);
     }
-
 }
