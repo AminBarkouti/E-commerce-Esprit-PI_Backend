@@ -1,8 +1,11 @@
 package tn.esprit.ecommerceespritpi.Controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tn.esprit.ecommerceespritpi.Entities.Product;
+import tn.esprit.ecommerceespritpi.ResponceMessage.ApiResponse;
 import tn.esprit.ecommerceespritpi.Services.IProductService;
 
 import java.util.List;
@@ -33,15 +36,18 @@ public class ProductController {
         return products;
     }
 
-    @PostMapping("/addProduct")
+    @PostMapping("/add")
     public Product addProduct(@RequestBody Product a) {
         return productService.AddProduct(a);
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteProduct(@PathVariable("id") Long id) {
-        return productService.RemoveProduct(id);
+    public ResponseEntity<ApiResponse<Void>> deleteProduct(@PathVariable("id") Long id) {
+        String message = productService.RemoveProduct(id);
+        ApiResponse<Void> apiResponse = new ApiResponse<>(null, message);
+        return ResponseEntity.status(HttpStatus.OK).body(apiResponse);
     }
+
 
     @GetMapping("{id}")
     public Product getById(@PathVariable("id") Long id) {

@@ -22,8 +22,8 @@ public class Product {
     private String type;
     @ElementCollection
     private List<String> sizes;
-    @ElementCollection
-    private List<String> images;
+    @OneToMany(mappedBy = "product")
+    private List<ImageData> images;
     private String stock;
     private double price;
     private double prevprice;
